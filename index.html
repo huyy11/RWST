@@ -3,77 +3,1281 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RWST | Professional Services</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>RWST | Rural Water and Sanitation Team | Cambodia</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ===== CSS Variables & Reset ===== */
+    :root {
+      --primary-blue: #1573b8;
+      --secondary-blue: #2b2e83;
+      --accent-teal: #1a9c9c;
+      --light-bg: #f4f8fb;
+      --dark-text: #333333;
+      --light-text: #ffffff;
+      --gray-border: #e1e5e9;
+      --shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--dark-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      color: var(--secondary-blue);
+      margin-bottom: 1.5rem;
+      position: relative;
+      text-align: center;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--accent-teal);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 3rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-blue);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--secondary-blue);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--primary-blue);
+      border: 2px solid var(--primary-blue);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--primary-blue);
+      color: white;
+    }
+
+    /* ===== HEADER & NAVBAR ===== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background-color: white;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+
+    header.scrolled {
+      padding: 5px 0;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-img {
+      height: 50px;
+      width: auto;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--secondary-blue);
+    }
+
+    .logo-text span {
+      color: var(--primary-blue);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-link {
+      font-weight: 600;
+      color: var(--dark-text);
+      position: relative;
+      padding: 5px 0;
+      transition: var(--transition);
+    }
+
+    .nav-link:hover {
+      color: var(--primary-blue);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-blue);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      margin-left: 20px;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: var(--secondary-blue);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      padding: 180px 0 120px;
+      background: linear-gradient(135deg, rgba(21, 115, 184, 0.9) 0%, rgba(43, 46, 131, 0.9) 100%), url('https://images.unsplash.com/photo-1541140532154-b024d705b90a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-btns .btn-primary {
+      background-color: white;
+      color: var(--secondary-blue);
+    }
+
+    .hero-btns .btn-primary:hover {
+      background-color: var(--light-bg);
+    }
+
+    .hero-btns .btn-secondary {
+      color: white;
+      border-color: white;
+    }
+
+    .hero-btns .btn-secondary:hover {
+      background-color: white;
+      color: var(--secondary-blue);
+    }
+
+    /* ===== ABOUT SECTION ===== */
+    .about {
+      padding: 100px 0;
+      background-color: white;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-text h2 {
+      color: var(--secondary-blue);
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+    }
+
+    .about-text p {
+      margin-bottom: 1.5rem;
+      color: #555;
+    }
+
+    .about-stats {
+      display: flex;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary-blue);
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .about-image {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    /* ===== SERVICES SECTION ===== */
+    .services {
+      padding: 100px 0;
+      background-color: var(--light-bg);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      padding: 30px;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-icon {
+      font-size: 2.5rem;
+      color: var(--primary-blue);
+      margin-bottom: 20px;
+    }
+
+    .service-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: var(--secondary-blue);
+    }
+
+    /* ===== PROJECTS SECTION ===== */
+    .projects {
+      padding: 100px 0;
+      background-color: white;
+    }
+
+    .projects-slider {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .project-card {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .project-image {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.05);
+    }
+
+    .project-content {
+      padding: 25px;
+    }
+
+    .project-content h3 {
+      margin-bottom: 10px;
+      color: var(--secondary-blue);
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .project-tag {
+      background-color: var(--light-bg);
+      color: var(--primary-blue);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* ===== TEAM SECTION ===== */
+    .team {
+      padding: 100px 0;
+      background-color: var(--light-bg);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .team-member {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .member-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 20px;
+      border: 5px solid var(--light-bg);
+    }
+
+    .member-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .team-member h4 {
+      color: var(--secondary-blue);
+      margin-bottom: 5px;
+    }
+
+    .member-role {
+      color: var(--primary-blue);
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    /* ===== CONTACT SECTION ===== */
+    .contact {
+      padding: 100px 0;
+      background-color: white;
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      margin-top: 50px;
+    }
+
+    .contact-info h3 {
+      color: var(--secondary-blue);
+      margin-bottom: 20px;
+    }
+
+    .contact-details {
+      margin-bottom: 30px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background-color: var(--light-bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-blue);
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+
+    .contact-form {
+      background-color: var(--light-bg);
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--secondary-blue);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid var(--gray-border);
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      border-color: var(--primary-blue);
+      outline: none;
+    }
+
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    /* ===== PARTNERS SECTION ===== */
+    .partners {
+      padding: 80px 0;
+      background-color: var(--light-bg);
+      text-align: center;
+    }
+
+    .partners-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      margin-top: 50px;
+    }
+
+    .partner-logo {
+      height: 60px;
+      filter: grayscale(100%);
+      opacity: 0.7;
+      transition: var(--transition);
+    }
+
+    .partner-logo:hover {
+      filter: grayscale(0);
+      opacity: 1;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background-color: var(--secondary-blue);
+      color: white;
+      padding: 70px 0 30px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-column h4 {
+      font-size: 1.3rem;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-column h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background-color: var(--accent-teal);
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: #ccc;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: white;
+      padding-left: 5px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .social-icon:hover {
+      background-color: var(--primary-blue);
+      transform: translateY(-5px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    /* ===== RESPONSIVE STYLES ===== */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+      
+      .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        flex-direction: column;
+        background-color: white;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        padding: 30px 0;
+        gap: 0;
+      }
+      
+      .nav-menu.active {
+        left: 0;
+      }
+      
+      .nav-link {
+        margin: 15px 0;
+        padding: 15px;
+      }
+      
+      .nav-cta {
+        margin: 20px auto 0;
+        display: block;
+        width: fit-content;
+      }
+      
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      .about-stats {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero-btns {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .hero-btns .btn {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .delay-1 {
+      transition-delay: 0.1s;
+    }
+    
+    .delay-2 {
+      transition-delay: 0.2s;
+    }
+    
+    .delay-3 {
+      transition-delay: 0.3s;
+    }
+  </style>
 </head>
 <body>
-
-  <header class="navbar">
-    <div class="logo">
-      <img src="./RWST_transparent.png" alt="RWST Logo">
-      <span>RWST</span>
+  <!-- Header & Navigation -->
+  <header id="header">
+    <div class="container header-container">
+      <div class="logo-container">
+        <img src="./Logo RWST.jpg" alt="RWST Logo" class="logo-img">
+        <div class="logo-text">RWST<span>.kh</span></div>
+      </div>
+      
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About Us</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#team" class="nav-link">Team</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#contact" class="btn btn-primary nav-cta">Get Consultation</a>
+      </nav>
     </div>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-    </nav>
   </header>
 
-  <section class="hero">
-    <img src="./Logo RWST.jpg" alt="RWST Logo" class="hero-logo">
-    <h1>Reliable Water & Sanitation Solutions</h1>
-    <p>Professional. Modern. Community-focused.</p>
-    <a href="#contact" class="btn">Get in Touch</a>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container hero-content fade-in">
+      <h1>Leading Social Enterprise for Water & Sanitation in Cambodia</h1>
+      <p>A local change agent for inclusive WASH services, improving health and well-being of rural Cambodian people through access to sustainable and resilient water, sanitation, and hygiene solutions.</p>
+      <div class="hero-btns">
+        <a href="#services" class="btn btn-primary">Our Services</a>
+        <a href="#contact" class="btn btn-secondary">Contact Us</a>
+      </div>
+    </div>
   </section>
 
-  <section id="about" class="section">
-    <h2>About Us</h2>
-    <p>
-      RWST is a professional business dedicated to delivering safe, reliable,
-      and modern water and sanitation solutions. We focus on quality,
-      sustainability, and community well-being.
-    </p>
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <h2 class="section-title fade-in">Who We Are</h2>
+      <p class="section-subtitle fade-in delay-1">A leading local social enterprise and a service provider for WASH-SMEs and WASH Actors to improve their effectiveness and effeciency.
+A local Change Agent for inclusive WASH services 
+RWST’s WASH Agent was awared for its innvative business solution for SDG6, by SDG Fellowship Cohort 2018.
+RWST partnered with wide range of key stakeholds to improve and increase WASH services in rural area.
+A catalyst to encourage and support financial institution and private investors investe in WASH infrastructure.
+RWST is a team of  large pool of pastionate WASH professionals.
+RWST works toward sustainable, resilient and inclusive WASH services—for local community by local WASH service providers.
+</p>
+      
+      <div class="about-content">
+        <div class="about-text fade-in delay-2">
+          <h2>RWST: Rural Water and Sanitation Team</h2>
+          <p>Established in 2017 by a team of WASH professionals, RWST is a social enterprise dedicated to improving water, sanitation, and hygiene services in rural Cambodia. We partner with water associations, NGOs, and private sector stakeholders to enhance water business operations and service quality.</p>
+          <p>Our vision is that all Cambodian people in rural areas have access to sustainable and resilient clean and safe water supply and sanitation services.</p>
+          
+          <div class="about-stats">
+            <div class="stat-item">
+              <div class="stat-number">100+</div>
+              <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">30+</div>
+              <div class="stat-label">Partners</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">7</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="about-image fade-in delay-3">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="RWST Team in Cambodia">
+        </div>
+      </div>
+    </div>
   </section>
 
- <section class="hero animate">...</section>
-
-<section id="about" class="section animate">...</section>
-
-<section id="services" class="section light animate">
-  <div class="cards">
-    <div class="card animate">Water Supply Management</div>
-    <div class="card animate">Sanitation Systems</div>
-    <div class="card animate">Maintenance & Support</div>
-  </div>
-</section>
-
-  <section class="section">
-    <h2>Why Choose RWST?</h2>
-    <ul class="reasons">
-      <li>✔ Professional & Experienced Team</li>
-      <li>✔ Modern Technology</li>
-      <li>✔ Trusted & Reliable Service</li>
-    </ul>
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <div class="container">
+      <h2 class="section-title fade-in">Our Services</h2>
+      <p class="section-subtitle fade-in delay-1">Comprehensive WASH solutions from capacity building to technical implementation</p>
+      
+      <div class="services-grid">
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3>WASH Capacity Building</h3>
+          <p>Training, coaching, and mentoring for WASH actors including local officers, NGOs, and community-based organizations.</p>
+          <ul>
+            <li>Online Training Series (6/year)</li>
+            <li>WASH Webinar Series</li>
+            <li>CAM-WASH Knowledge Platform</li>
+          </ul>
+        </div>
+        
+        <div class="service-card fade-in delay-1">
+          <div class="service-icon">
+            <i class="fas fa-flask"></i>
+          </div>
+          <h3>Research & Evaluation</h3>
+          <p>Comprehensive research studies and project evaluations for development partners, NGOs, and private companies.</p>
+          <ul>
+            <li>Project Impact Evaluation</li>
+            <li>Market Surveys</li>
+            <li>WASH Workforce Scoping</li>
+          </ul>
+        </div>
+        
+        <div class="service-card fade-in delay-2">
+          <div class="service-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h3>Technical Consultancy</h3>
+          <p>Water engineering services including feasibility studies, water treatment plant design, and infrastructure assessment.</p>
+          <ul>
+            <li>Water Treatment Design</li>
+            <li>Pipe Network Planning</li>
+            <li>Construction Supervision</li>
+          </ul>
+        </div>
+        
+        <div class="service-card fade-in delay-3">
+          <div class="service-icon">
+            <i class="fas fa-hand-holding-water"></i>
+          </div>
+          <h3>Water Supply Solutions</h3>
+          <p>Provision of clean, safe, and affordable drinking water systems for schools, health centers, and communities.</p>
+          <ul>
+            <li>UV & UF Filter Systems</li>
+            <li>Bio-sand Filters</li>
+            <li>Arsenic Removal Units</li>
+          </ul>
+        </div>
+        
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <i class="fas fa-store"></i>
+          </div>
+          <h3>WASH Agent Program</h3>
+          <p>Franchise model supporting local entrepreneurs to become one-stop-shops for WASH services in their communities.</p>
+          <ul>
+            <li>Information Center</li>
+            <li>Product Distribution</li>
+            <li>Service Connection</li>
+          </ul>
+        </div>
+        
+        <div class="service-card fade-in delay-1">
+          <div class="service-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Business Development</h3>
+          <p>Support for water SMEs including financial modeling, business planning, and access to finance.</p>
+          <ul>
+            <li>Feasibility Studies</li>
+            <li>Loan Application Support</li>
+            <li>Financial Modeling</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="contact" class="section light">
-    <h2>Contact Us</h2>
-    <form id="contact-form">
-        <input type="text" name="user_name" placeholder="Your Name" required />
-        <input type="email" name="user_email" placeholder="Your Email" required />
-        <textarea name="message" placeholder="Your Message"></textarea>
-        <button type="submit">Send Message</button>
-    </form>
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
+  <!-- Projects Section -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <h2 class="section-title fade-in">Featured Projects</h2>
+      <p class="section-subtitle fade-in delay-1">Recent and ongoing initiatives improving WASH services across Cambodia</p>
+      
+      <div class="projects-slider">
+        <div class="project-card fade-in">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1523986371872-9d3ba2e2a389?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Blue School Project">
+          </div>
+          <div class="project-content">
+            <h3>Blue School Project</h3>
+            <p>Transforming 15 primary schools in Banteay Meanchey into model schools with comprehensive WASH facilities and education.</p>
+            <div class="project-tags">
+              <span class="project-tag">Schools</span>
+              <span class="project-tag">Education</span>
+              <span class="project-tag">CARITAS Swiss</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card fade-in delay-1">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Arsenic Removal Project">
+          </div>
+          <div class="project-content">
+            <h3>Community Arsenic Removal Filter</h3>
+            <p>Developing scalable arsenic removal solutions for villages with groundwater contamination in Prey Veng province.</p>
+            <div class="project-tags">
+              <span class="project-tag">Arsenic Removal</span>
+              <span class="project-tag">Health</span>
+              <span class="project-tag">Samaritan's Purse Canada</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card fade-in delay-2">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="AI Water Loss Solution">
+          </div>
+          <div class="project-content">
+            <h3>AI Water Loss Reduction</h3>
+            <p>Implementing artificial intelligence technology to reduce non-revenue water for Cambodian water utilities.</p>
+            <div class="project-tags">
+              <span class="project-tag">Technology</span>
+              <span class="project-tag">Innovation</span>
+              <span class="project-tag">World Bank</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
+  <!-- Team Section -->
+  <section class="team" id="team">
+    <div class="container">
+      <h2 class="section-title fade-in">Our Leadership</h2>
+      <p class="section-subtitle fade-in delay-1">Passionate professionals dedicated to improving WASH services in Cambodia</p>
+      
+      <div class="team-grid">
+        <div class="team-member fade-in">
+          <div class="member-image">
+            <img src="./photo_2025-12-29_20-53-10.jpg" alt="Mr. Khykeng HOR">
+          </div>
+          <h4>Mr. Khykeng HOR</h4>
+          <div class="member-role">Team Leader & Founder</div>
+          <p>Former Executive Director of Cambodian Water Supply Association with over 20 years of experience in WASH sector development.</p>
+        </div>
+        
+        <div class="team-member fade-in delay-1">
+          <div class="member-image">
+            <img src="...." alt="Ms. Khun Chantrea">
+          </div>
+          <h4>Ms. Khun Chantrea</h4>
+          <div class="member-role">WASH Engineer</div>
+          <p>Specialized in water treatment system design and implementation with extensive experience in rural community projects.</p>
+        </div>
+        
+        <div class="team-member fade-in delay-2">
+          <div class="member-image">
+            <img src="..." alt="Mr. Yin Somean">
+          </div>
+          <h4>Mr. Yin Somean</h4>
+          <div class="member-role">Financial Specialist</div>
+          <p>Expert in water business financing, financial modeling, and access to finance for WASH SMEs.</p>
+        </div>
+        
+        <div class="team-member fade-in delay-3">
+          <div class="member-image">
+            <img src="..." alt="Ms. Sang Bernadin">
+          </div>
+          <h4>Ms. Sang Bernadin</h4>
+          <div class="member-role">Capacity Building Specialist</div>
+          <p>Develops and delivers training programs for WASH actors across Cambodia with focus on practical skills.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section class="partners">
+    <div class="container">
+      <h2 class="section-title fade-in">Our Partners</h2>
+      <p class="section-subtitle fade-in delay-1">Collaborating with leading organizations to expand WASH services in Cambodia</p>
+      
+      <div class="partners-logos">
+        <img src="https://via.placeholder.com/120x60/1573b8/ffffff?text=WaterAid" alt="WaterAid" class="partner-logo">
+        <img src="https://via.placeholder.com/120x60/2b2e83/ffffff?text=World+Bank" alt="World Bank" class="partner-logo">
+        <img src="https://via.placeholder.com/120x60/1a9c9c/ffffff?text=CARITAS" alt="CARITAS" class="partner-logo">
+        <img src="https://via.placeholder.com/120x60/1573b8/ffffff?text=SNV" alt="SNV" class="partner-logo">
+        <img src="https://via.placeholder.com/120x60/2b2e83/ffffff?text=UNDP" alt="UNDP" class="partner-logo">
+        <img src="https://via.placeholder.com/120x60/1a9c9c/ffffff?text=AFD" alt="AFD" class="partner-logo">
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="section-title fade-in">Contact Us</h2>
+      <p class="section-subtitle fade-in delay-1">Get in touch to discuss how we can support your WASH initiatives</p>
+      
+      <div class="contact-container">
+        <div class="contact-info fade-in delay-2">
+          <h3>Get in Touch</h3>
+          <p>Reach out to our team for consultations, project inquiries, or partnership opportunities.</p>
+          
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div>
+                <h4>Address</h4>
+                <p>Borey Peng Hout, House 18, Street P09, Sangkat Niroth, Khan Chbar Ampov, Phnom Penh, Cambodia</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div>
+                <h4>Phone</h4>
+                <p>+855 (0) 93 921 914<br>+855 (0) 766 921 914<br>+855 (0) 717 921 914</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <h4>Email</h4>
+                <p>info.rwst@gmail.com<br>khykeng.rwst@gmail.com</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="social-icons">
+            <a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-telegram"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="contact-form fade-in delay-3">
+          <h3>Send us a Message</h3>
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" class="form-control" placeholder="your.email@example.com" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="organization">Organization</label>
+              <input type="text" id="organization" class="form-control" placeholder="Your Organization">
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" class="form-control" placeholder="Tell us about your project or inquiry..." required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <p>© 2025 RWST. All rights reserved.</p>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h4>RWST</h4>
+          <p>A leading social enterprise and service provider for WASH-SMEs and WASH Actors in Cambodia. Committed to sustainable, resilient, and inclusive WASH services for local communities by local providers.</p>
+          <div class="social-icons">
+            <a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-telegram"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#team">Our Team</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Our Services</h4>
+          <ul class="footer-links">
+            <li><a href="#services">WASH Capacity Building</a></li>
+            <li><a href="#services">Technical Consultancy</a></li>
+            <li><a href="#services">Water Supply Solutions</a></li>
+            <li><a href="#services">WASH Agent Program</a></li>
+            <li><a href="#services">Research & Evaluation</a></li>
+            <li><a href="#services">Business Development</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Contact Info</h4>
+          <ul class="footer-links">
+            <li><i class="fas fa-map-marker-alt"></i> Phnom Penh, Cambodia</li>
+            <li><i class="fas fa-phone"></i> +855 (0) 93 921 914</li>
+            <li><i class="fas fa-envelope"></i> info.rwst@gmail.com</li>
+            <li><i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 5:00 PM</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 Rural Water and Sanitation Team (RWST). All rights reserved. | Registration No: 5000014558 | VAT ID: E002-2000002536</p>
+        <p>"A leading social enterprise and service provider for WASH-SMEs and WASH Actors in Cambodia"</p>
+      </div>
+    </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // Mobile Navigation Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+      });
+    });
+    
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Fade-in animation on scroll
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const fadeInOnScroll = () => {
+      fadeElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+          element.classList.add('visible');
+        }
+      });
+    };
+    
+    // Check on load and scroll
+    window.addEventListener('load', fadeInOnScroll);
+    window.addEventListener('scroll', fadeInOnScroll);
+    
+    // Form submission (basic)
+    const contactForm = document.getElementById('contactForm');
+    
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Get form values
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const organization = document.getElementById('organization').value;
+      const message = document.getElementById('message').value;
+      
+      // In a real implementation, you would send this data to a server
+      // For now, we'll just show an alert
+      alert(`Thank you ${name}! Your message has been received. We will contact you at ${email} soon.`);
+      
+      // Reset form
+      contactForm.reset();
+    });
+    
+    // Hamburger animation
+    hamburger.addEventListener('click', () => {
+      const spans = hamburger.querySelectorAll('span');
+      if (hamburger.classList.contains('active')) {
+        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+      } else {
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
